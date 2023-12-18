@@ -1,0 +1,28 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#maDiv {
+    width: 1200px;
+    height: 1200px;
+    border: 1px solid black;
+}
+
+.ligne {
+    display: flex;
+    width: 1200px;
+    height: 60px;
+}
+
+.carre {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    color: #D8C0B4;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
