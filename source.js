@@ -14,11 +14,6 @@ for(let row = 0; row < 15; row++){
 
         carre.style.backgroundColor = color;
 
-        //carre.addEventListener('click', (e) => {
-          //  e.target.style.backgroundColor = 'red';
-        //});*
-
-
             carre.addEventListener('click', (e) => {
                 if(e.target.style.backgroundColor === 'red'){
                     e.target.style.backgroundColor = color;
@@ -27,10 +22,7 @@ for(let row = 0; row < 15; row++){
                 }
             });
         ligne.append(carre);
-
-       
     }
-  
     maDiv.append(ligne);
 }
 
