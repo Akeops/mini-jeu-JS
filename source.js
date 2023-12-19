@@ -1,8 +1,9 @@
+
 const maDiv = document.querySelector('#maDiv');
 console.log(maDiv);
 
 let color = "grey";
-
+chronometre(5);
 for(let row = 0; row < 15; row++){
     const ligne = document.createElement('div');
     ligne.id = `ligne - ${row}`;
@@ -25,6 +26,26 @@ for(let row = 0; row < 15; row++){
     }
     maDiv.append(ligne);
 }
+
+function chronometre(initialTime){
+    let temps = initialTime;
+    const premiereDiv = document.querySelector('#premiereDiv');
+    const baliseP = document.createElement('p');
+    baliseP.textContent = temps;
+    console.log(temps);
+    premiereDiv.append(baliseP);
+
+    const interval = setInterval(() => {
+        temps -= 0.1;
+        baliseP.textContent = temps.toFixed(1);
+
+        if (temps < 0) {
+            clearInterval(interval);
+        }
+    }, 100);
+}
+
+
 
 
 
