@@ -1,9 +1,15 @@
-
+let compteurActif = true;
 const maDiv = document.querySelector('#maDiv');
+let casesRougesCliquees = 0;
 console.log(maDiv);
 
 let color = "grey";
 chronometre(5);
+
+const compteurP = document.createElement('p');
+compteurP.textContent = `Cases rouges cliquées : ${casesRougesCliquees}`;
+premiereDiv.append(compteurP);
+
 for(let row = 0; row < 15; row++){
     const ligne = document.createElement('div');
     ligne.id = `ligne - ${row}`;
@@ -16,10 +22,15 @@ for(let row = 0; row < 15; row++){
         carre.style.backgroundColor = color;
 
             carre.addEventListener('click', (e) => {
-                if(e.target.style.backgroundColor === 'red'){
-                    e.target.style.backgroundColor = color;
-                } else {
-                    e.target.style.backgroundColor = 'red';
+                if (compteurActif) {
+                    if (e.target.style.backgroundColor === 'red') {
+                        e.target.style.backgroundColor = color;
+                        
+                    } else {
+                        e.target.style.backgroundColor = 'red';
+                        casesRougesCliquees++;
+                        compteurP.textContent = `Cases rouges cliquées : ${casesRougesCliquees}`;
+                    }
                 }
             });
         ligne.append(carre);
@@ -36,11 +47,13 @@ function chronometre(initialTime){
     premiereDiv.append(baliseP);
 
     const interval = setInterval(() => {
-        temps -= 0.1;
-        baliseP.textContent = temps.toFixed(1);
+        temps = Math.round((temps - 0.1) * 10) / 10;
+        baliseP.textContent = `TIMER : ${temps.toFixed(1)}`;
 
-        if (temps < 0) {
+        if (temps <= 0) {
             clearInterval(interval);
+            compteurActif = false;
+            
         }
     }, 100);
 }
