@@ -1,10 +1,13 @@
 let compteurActif = true;
 const maDiv = document.querySelector('#maDiv');
 let casesRougesCliquees = 0;
+const messageResultat = document.createElement('p');
+premiereDiv.append(messageResultat);
 console.log(maDiv);
 
+
 let color = "grey";
-chronometre(5);
+chronometre(5, 10);
 
 const compteurP = document.createElement('p');
 compteurP.textContent = `Cases rouges cliquées : ${casesRougesCliquees}`;
@@ -38,7 +41,7 @@ for(let row = 0; row < 15; row++){
     maDiv.append(ligne);
 }
 
-function chronometre(initialTime){
+function chronometre(initialTime, nombreCasesRougesRequises){
     let temps = initialTime;
     const premiereDiv = document.querySelector('#premiereDiv');
     const baliseP = document.createElement('p');
@@ -53,10 +56,36 @@ function chronometre(initialTime){
         if (temps <= 0) {
             clearInterval(interval);
             compteurActif = false;
-            
+            afficherResultat();
         }
     }, 100);
+
+    function afficherResultat() {
+        if (casesRougesCliquees >= nombreCasesRougesRequises) {
+            messageResultat.textContent = `Bravo ! Vous avez réussi en cliquant sur ${casesRougesCliquees} cases rouges.`;
+        } else {
+            messageResultat.textContent = `Dommage, vous n'avez pas atteint le nombre requis de cases rouges (${nombreCasesRougesRequises}).`;
+        }
+    }
 }
+
+const boutonRejouer = document.createElement('button');
+boutonRejouer.textContent = 'Rejouer';
+boutonRejouer.addEventListener('click', () => {
+    // Réinitialisation du jeu
+    casesRougesCliquees = 0;
+    compteurP.textContent = `Cases rouges cliquées : ${casesRougesCliquees}`;
+    messageResultat.textContent = '';
+    compteurActif = true;
+    const carres = document.querySelectorAll('.carre');
+    carres.forEach(carre => {
+        carre.style.backgroundColor = color;
+    });
+    chronometre(5, 10); // Réglez 10 sur le nombre de cases rouges requises pour gagner
+    
+});
+
+premiereDiv.append(boutonRejouer);
 
 
 
