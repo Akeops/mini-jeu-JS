@@ -7,7 +7,7 @@ console.log(maDiv);
 
 
 let color = "grey";
-chronometre(5, 10);
+chronometre(5, 15); // Réglez 15 sur le nombre de cases rouges requises pour gagner
 
 const compteurP = document.createElement('p');
 compteurP.textContent = `Cases rouges cliquées : ${casesRougesCliquees}`;
@@ -81,7 +81,7 @@ boutonRejouer.addEventListener('click', () => {
     carres.forEach(carre => {
         carre.style.backgroundColor = color;
     });
-    chronometre(5, 10); // Réglez 10 sur le nombre de cases rouges requises pour gagner
+    chronometre(5, 15); // Réglez 15 sur le nombre de cases rouges requises pour gagner
     
 });
 
